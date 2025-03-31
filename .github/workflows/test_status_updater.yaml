@@ -1,0 +1,35 @@
+name: Auto Update LandTen Status
+
+on:
+  schedule:
+    - cron: '0 3 * * *'  # Runs every day at 3 AM UTC
+  workflow_dispatch:     # Also lets you trigger it manually
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: 📦 Install dependencies
+        run: |
+          pip install -r requirements.txt || true
+
+      - name: 🧪 Run all test_case_runner scripts
+        run: |
+          find ./superstructures -name "test_case_runner.py" -exec python {} \;
+
+      - name: 📤 Commit .status updates
+        run: |
+          git config --global user.name 'LandTen Bot'
+          git config --global user.email 'landten-bot@example.com'
+          git add superstructures/**/.status
+          git diff --cached --quiet || git commit -m "🤖 Auto-update .status files"
+          git push
