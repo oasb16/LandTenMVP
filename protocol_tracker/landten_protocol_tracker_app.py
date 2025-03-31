@@ -38,8 +38,3 @@ data = {
 
 df = pd.DataFrame(data)
 st.dataframe(df, use_container_width=True)
-
-st.success("🗂 LandTen MVP Main Github : https://github.com/oasb16/LandTenMVP")
-st.success("🗂 LandTen MVP Playbook : https://github.com/oasb16/LandTenMVP/blob/master/docs/LandTen_Playbook.md")
-st.success("🗂 LandTen MVP Manifesto: https://github.com/oasb16/LandTenMVP/blob/master/docs/LandTen_Manifesto.md")
-st.success("🗂 LandTen MVP Tracker: https://github.com/oasb16/LandTenMVP/blob/master/protocol_tracker/landten_protocol_tracker_app.py")
