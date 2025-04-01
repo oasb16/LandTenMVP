@@ -2,9 +2,8 @@ import streamlit as st
 import pandas as pd
 import os, sys
 
-# Enable access to one directory up
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from utils.status_tracker import read_status
+from protocol_tracker.utils.status_tracker import read_status
+
 
 def render_tracker():
     st.set_page_config(page_title="LandTen MVP Protocol Tracker", layout="wide")
