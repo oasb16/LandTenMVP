@@ -4,6 +4,9 @@ st.set_page_config(page_title="LandTen", layout="wide")
 from superstructures.tracker import show_tracker
 
 # Sidebar Navigation
+st.write("Navigation Bar Person to have Login and Seperate view sooon.")
+st.write("Navigation Bar Person to have Login and Seperate view sooon.")
+st.write("Navigation Bar Person to have Login and Seperate view sooon.")
 st.sidebar.title("Navigation")
 app_mode = st.sidebar.radio("Choose an option:", ["Home", "Protocol Tracker", "Tenant Chat", "Landlord", "Contractor"])
 
