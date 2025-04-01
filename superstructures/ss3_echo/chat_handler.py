@@ -1,9 +1,12 @@
-import openai
+import openai, os
+import streamlit as st
+
+openai.key = st.secrets.get("OPENAI_API_KEY")
 
 def get_gpt_reply(messages):
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4",
+        response = openai.chat.completions.create(
+            model="gpt-4o",
             messages=[{"role": "system", "content": "You're a landlord assistant summarizing tenant issues into short bullet points."}] + messages,
             max_tokens=40
         )
