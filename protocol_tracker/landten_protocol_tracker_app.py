@@ -1,5 +1,5 @@
-st.set_page_config(page_title="LandTen MVP Protocol Tracker", layout="wide")
 import streamlit as st
+st.set_page_config(page_title="LandTen MVP Protocol Tracker", layout="wide")
 import pandas as pd
 import os, sys
 
