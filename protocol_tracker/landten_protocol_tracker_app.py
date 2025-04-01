@@ -5,6 +5,7 @@ import os, sys
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 try:
     from utils.status_tracker import read_status
