@@ -1,6 +1,17 @@
 import streamlit as st
 import pandas as pd
 import os, sys
+
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+
+try:
+    from utils.status_tracker import read_status
+except ModuleNotFoundError as e:
+    logging.error(f"Module import failed: {e}")
+    st.error(f"Module import failed: {e}")
+    
 from protocol_tracker.utils.status_tracker import read_status
 
 print("📡 Tracker loading started")
