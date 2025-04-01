@@ -29,7 +29,7 @@ elif app_mode == "Contractor":
     from superstructures.ss3_echo import run_echo
     run_echo()
 
-elif app_mode == "Contractor":
+elif app_mode == "About":
     st.write("Refer Docs: https://github.com/oasb16/LandTenMVP/tree/master/docs")
     st.write("Playbook : https://github.com/oasb16/LandTenMVP/blob/master/docs/LandTen_Playbook.md")
     st.write("Workflow : https://github.com/oasb16/LandTenMVP/blob/master/docs/workflow.md")
