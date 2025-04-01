@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import os, sys
-
 from protocol_tracker.utils.status_tracker import read_status
 
 
