@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
-import os
+import os, sys
+
+# 👇 Add this block right below your existing imports
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from utils.status_tracker import read_status
 
 st.set_page_config(page_title="LandTen MVP Protocol Tracker", layout="wide")
