@@ -3,8 +3,6 @@ import streamlit as st
 st.set_page_config(page_title="LandTen", layout="wide")
 from superstructures.tracker import show_tracker
 
-st.set_page_config(page_title="LandTen MVP", layout="wide")
-
 # Sidebar Navigation
 st.sidebar.title("Navigation")
 app_mode = st.sidebar.radio("Choose an option:", ["Home", "Protocol Tracker", "Tenant Chat"])
