@@ -1,5 +1,6 @@
 # streamlit_app.py
 import streamlit as st
+st.set_page_config(page_title="LandTen", layout="wide")
 from superstructures.tracker import show_tracker
 
 st.set_page_config(page_title="LandTen MVP", layout="wide")

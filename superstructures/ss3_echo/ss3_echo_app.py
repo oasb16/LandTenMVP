@@ -6,7 +6,6 @@ import uuid
 from datetime import datetime
 
 def run_echo():
-    st.set_page_config(page_title="Tenant Dashboard", layout="wide")
     st.title("Tenant Dashboard")
 
     if "chat" not in st.session_state:
