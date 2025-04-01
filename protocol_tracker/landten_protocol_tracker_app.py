@@ -5,12 +5,6 @@ from utils.status_tracker import read_status
 
 print("📡 Tracker loading started")
 
-try:
-    from utils.status_tracker import read_status
-    print("✅ status_tracker import OK")
-except Exception as e:
-    print(f"❌ Failed to import status_tracker: {e}")
-
 def render_tracker():
     st.set_page_config(page_title="LandTen MVP Protocol Tracker", layout="wide")
     st.title("🗂 LandTen MVP Protocol Tracker")
