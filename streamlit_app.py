@@ -4,11 +4,8 @@ st.set_page_config(page_title="LandTen", layout="wide")
 from superstructures.tracker import show_tracker
 
 # Sidebar Navigation
-st.write("Navigation Bar Person to have Login and Seperate view sooon.")
-st.write("Navigation Bar Person to have Login and Seperate view sooon.")
-st.write("Navigation Bar Person to have Login and Seperate view sooon.")
 st.sidebar.title("Navigation")
-app_mode = st.sidebar.radio("Choose an option:", ["Home", "Protocol Tracker", "Tenant Chat", "Landlord", "Contractor"])
+app_mode = st.sidebar.radio("Choose an option:", ["Home", "Protocol Tracker", "Tenant Chat", "Landlord", "Contractor","About"])
 
 if app_mode == "Home":
     st.title("Welcome to LandTen MVP")
@@ -31,3 +28,8 @@ elif app_mode == "Landlord":
 elif app_mode == "Contractor":
     from superstructures.ss3_echo import run_echo
     run_echo()
+
+elif app_mode == "Contractor":
+    st.write("Refer Docs: https://github.com/oasb16/LandTenMVP/tree/master/docs")
+    st.write("Playbook : https://github.com/oasb16/LandTenMVP/blob/master/docs/LandTen_Playbook.md")
+    st.write("Workflow : https://github.com/oasb16/LandTenMVP/blob/master/docs/workflow.md")
