@@ -1,12 +1,11 @@
-
 import streamlit as st
 import pandas as pd
 import os
+from utils.status_tracker import read_status
 
 st.set_page_config(page_title="LandTen MVP Protocol Tracker", layout="wide")
 st.title("🗂 LandTen MVP Protocol Tracker")
 
-# Mapping superstructure protocols
 superstructures = [
     ("Gate", "SS1: AWS Cognito Authentication", "ss1_gate"),
     ("Pulse", "SS2: Persona-Based Dashboard Router", "ss2_pulse"),
@@ -20,39 +19,20 @@ superstructures = [
     ("Core", "SS10: Streamlit Shell + Payment Placeholder", "ss10_core"),
 ]
 
-base_path = "../superstructures"
 statuses = []
-output_links = []
-integration_ready = []
-notes = []
+timestamps = []
 
-for protocol, description, folder in superstructures:
-    status_path = os.path.join(base_path, folder, ".status")
-    if os.path.exists(status_path):
-        with open(status_path) as f:
-            status = f.read().strip()
-    else:
-        status = "missing"
-
+for _, _, folder in superstructures:
+    path = f"../superstructures/{folder}/.status"
+    status, ts = read_status(path)
     statuses.append(status)
-    output_links.append("ZIP" if status in ["zipped", "integrated"] else "-")
-    integration_ready.append("✅" if status in ["tested", "integrated"] else "❌")
-    notes.append("Auto-read from .status file")
+    timestamps.append(ts or "-")
 
-# Build DataFrame
 df = pd.DataFrame({
     "Protocol": [x[0] for x in superstructures],
     "Superstructure": [x[1] for x in superstructures],
     "Status": statuses,
-    "Output_Link": output_links,
-    "Integration_Ready": integration_ready,
-    "Notes": notes
+    "Last Updated": timestamps,
 })
 
 st.dataframe(df, use_container_width=True)
-
-
-st.success("🗂 LandTen MVP Main Github : https://github.com/oasb16/LandTenMVP")
-st.success("🗂 LandTen MVP Playbook : https://github.com/oasb16/LandTenMVP/blob/master/docs/LandTen_Playbook.md")
-st.success("🗂 LandTen MVP Manifesto: https://github.com/oasb16/LandTenMVP/blob/master/docs/LandTen_Manifesto.md")
-st.success("🗂 LandTen MVP Tracker: https://github.com/oasb16/LandTenMVP/blob/master/protocol_tracker/landten_protocol_tracker_app.py")
