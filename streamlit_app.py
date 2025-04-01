@@ -9,7 +9,10 @@ app_mode = st.sidebar.radio("Choose an option:", ["Home", "Protocol Tracker", "T
 
 if app_mode == "Home":
     st.title("Welcome to LandTen MVP")
+    st.write("This is Admin View.")
     st.write("Select an option from the sidebar to proceed.")
+    st.write("Navigation Bar Person to have Login and Seperate view sooon.")
+
 
 elif app_mode == "Protocol Tracker":
     show_tracker()
@@ -17,4 +20,11 @@ elif app_mode == "Protocol Tracker":
 elif app_mode == "Tenant Chat":
     from superstructures.ss3_echo import run_echo
     run_echo()
-    
+
+elif app_mode == "Landlord":
+    from superstructures.ss3_echo import run_echo
+    run_echo()
+
+elif app_mode == "Contractor":
+    from superstructures.ss3_echo import run_echo
+    run_echo()
