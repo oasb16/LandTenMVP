@@ -1,3 +1,4 @@
+st.set_page_config(page_title="LandTen MVP Protocol Tracker", layout="wide")
 import streamlit as st
 import pandas as pd
 import os, sys
@@ -5,20 +6,12 @@ import os, sys
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-try:
-    from utils.status_tracker import read_status
-except ModuleNotFoundError as e:
-    logging.error(f"Module import failed: {e}")
-    st.error(f"Module import failed: {e}")
-    
-from protocol_tracker.utils.status_tracker import read_status
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "utils")))
+from status_tracker import read_status
 
 print("📡 Tracker loading started")
 
 def render_tracker():
-    st.set_page_config(page_title="LandTen MVP Protocol Tracker", layout="wide")
     st.title("🗂 LandTen MVP Protocol Tracker")
     print("✅ render_tracker() called")
 
