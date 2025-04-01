@@ -8,8 +8,7 @@ st.sidebar.title("Navigation")
 app_mode = st.sidebar.radio("Choose an option:", ["Home",  "Tenant Chat", "Landlord", "Contractor", "Protocol Tracker","About"])
 
 if app_mode == "Home":
-    st.title("Welcome to LandTen MVP")
-    st.write("This is Admin View.")
+    st.title("Welcome to LandTen MVP Admin View.")
     st.write("Select an option from the sidebar to proceed.")
     st.write("Navigation Bar Person to have Login and Seperate view sooon.")
 
