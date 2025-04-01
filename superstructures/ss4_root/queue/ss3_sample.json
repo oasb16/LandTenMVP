@@ -1,0 +1,11 @@
+{
+  "interaction_id": "123e4567-e89b-12d3-a456-426614174000",
+  "summary": "Broken sink leaking water",
+  "keywords": [
+    "sink",
+    "leak"
+  ],
+  "priority": "high",
+  "contractor_type": "plumber",
+  "contractor_summary": "Replace leaking sink pipe in kitchen"
+}

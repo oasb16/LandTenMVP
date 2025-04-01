@@ -5,7 +5,7 @@ from superstructures.tracker import show_tracker
 
 # Sidebar Navigation
 st.sidebar.title("Navigation")
-app_mode = st.sidebar.radio("Choose an option:", ["Home", "Protocol Tracker", "Tenant Chat"])
+app_mode = st.sidebar.radio("Choose an option:", ["Home", "Protocol Tracker", "Tenant Chat", "Landlord", "Contractor"])
 
 if app_mode == "Home":
     st.title("Welcome to LandTen MVP")
