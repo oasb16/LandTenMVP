@@ -1,5 +1,4 @@
 import streamlit as st
-st.set_page_config(layout="wide")  # ✅ MUST come first
 
 from protocol_tracker.landten_protocol_tracker_app import render_tracker
 
