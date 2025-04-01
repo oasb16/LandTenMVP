@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import os, sys
+st.set_page_config(layout="wide")  # ✅ MUST come first
 from protocol_tracker.utils.status_tracker import read_status
 
 print("📡 Tracker loading started")
