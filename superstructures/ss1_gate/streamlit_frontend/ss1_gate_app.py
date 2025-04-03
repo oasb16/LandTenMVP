@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 import base64
-import json
+import json, datetime
 import jwt
 from urllib.parse import urlencode
 from superstructures.ss1_gate.persona_extractor import extract_persona
@@ -44,6 +44,15 @@ def run_login():
                 st.session_state["logged_in"] = True
                 st.session_state["email"] = user_info.get("email", "")
                 st.session_state["persona"] = persona
+
+                #Storing to DB
+                user_profile = {
+                    "email": st.session_state["email"],
+                    "persona": persona,
+                    "login_source": "GoogleSSO",
+                    "timestamp": str(datetime.utcnow())
+                }
+                write_user_profile(user_profile)
 
                 # Remove query params from URL
                 st.query_params.clear()
