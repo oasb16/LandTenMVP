@@ -12,41 +12,52 @@ COGNITO_DOMAIN = "https://us-east-1liycxnadt.auth.us-east-1.amazoncognito.com"
 REDIRECT_URI = "https://landtenmvpmainapp.streamlit.app/"
 TOKEN_ENDPOINT = f"{COGNITO_DOMAIN}/oauth2/token"
 
-def run_login():
-    if "logged_in" in st.session_state and st.session_state["logged_in"]:
-        return
+import streamlit as st
+import requests
+import jwt
+import base64
 
+def run_login():
+    st.set_page_config(page_title="Login", layout="wide")
     query_params = st.query_params
+
     if "code" in query_params:
-        code = query_params["code"][0]
-        data = {
+        code = query_params["code"]
+
+        token_url = "https://us-east-1liycxnadt.auth.us-east-1.amazoncognito.com/oauth2/token"
+        client_id = "ud60jun60me7po0pj0u8uvu2v"
+        client_secret = "YOUR_CLIENT_SECRET"
+        redirect_uri = "https://landtenmvpmainapp.streamlit.app/"
+
+        # Base64 encode client_id:client_secret
+        basic_auth = base64.b64encode(f"{client_id}:{client_secret}".encode()).decode()
+        headers = {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": f"Basic {basic_auth}"
+        }
+
+        payload = {
             "grant_type": "authorization_code",
-            "client_id": CLIENT_ID,
             "code": code,
-            "redirect_uri": REDIRECT_URI,
+            "redirect_uri": redirect_uri,
         }
-        auth_header = {
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-        response = requests.post(TOKEN_ENDPOINT, data=urlencode(data), headers=auth_header)
-        if response.status_code == 200:
-            token_data = response.json()
-            id_token = token_data.get("id_token", "")
-            payload_part = id_token.split(".")[1] + "==="
-            padded = payload_part + '=' * (-len(payload_part) % 4)
-            decoded = json.loads(base64.urlsafe_b64decode(padded.encode()).decode())
-            email = decoded.get("email", "")
-            persona = extract_persona()
+
+        res = requests.post(token_url, data=payload, headers=headers)
+
+        if res.status_code == 200:
+            tokens = res.json()
+            id_token = tokens.get("id_token", "")
+            user_info = jwt.decode(id_token, options={"verify_signature": False})
+
             st.session_state["logged_in"] = True
-            st.session_state["email"] = email
-            st.session_state["persona"] = persona
-            write_user_profile(email, persona)
+            st.session_state["email"] = user_info.get("email", "")
+            st.session_state["persona"] = st.query_params.get("persona", "tenant")
+
             st.experimental_set_query_params()
+            st.rerun()
         else:
-            st.error("Login failed")
+            st.error(f"Login failed: {res.text}")
     else:
-        login_url = (
-            f"{COGNITO_DOMAIN}/login?response_type=code&client_id={CLIENT_ID}"
-            f"&redirect_uri={REDIRECT_URI}&identity_provider=Google"
-        )
+        login_url = f"https://us-east-1liycxnadt.auth.us-east-1.amazoncognito.com/login?client_id={client_id}&response_type=code&scope=email+openid+phone&redirect_uri={redirect_uri}"
         st.markdown(f"[Login with Google SSO]({login_url})")
+
