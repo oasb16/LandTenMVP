@@ -1,7 +1,8 @@
 import streamlit as st
 import requests
 import base64
-import json, datetime
+import json
+from datetime import datetime
 import jwt
 from urllib.parse import urlencode
 from superstructures.ss1_gate.persona_extractor import extract_persona
@@ -53,7 +54,7 @@ def run_login():
                     "email": st.session_state["email"],
                     "persona": persona,
                     "login_source": "GoogleSSO",
-                    "timestamp": str(datetime.utcnow())
+                    "timestamp": str(datetime.utcnow().isoformat())
                 }
                 write_user_profile(user_profile)
 
