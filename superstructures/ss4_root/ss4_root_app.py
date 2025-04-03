@@ -1,6 +1,6 @@
-from validator import validate_incident
-from queue_stub import enqueue_incident
-from file_writer import write_status_and_log
+from .validator import validate_incident
+from .queue_stub import enqueue_incident
+from .file_writer import write_status_and_log
 import os, json
 
 def run_root_ingestion():
