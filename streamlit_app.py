@@ -20,6 +20,12 @@ from superstructures.tracker import show_tracker
 st.sidebar.title("Navigation")
 app_mode = st.sidebar.radio("Choose an option:", ["Home",  "Tenant Chat", "Landlord", "Contractor", "Protocol Tracker","About"])
 
+CLIENT_ID = st.secrets.get("COGNITO_CLIENT_ID")
+if st.sidebar.button("Logout"):
+    st.session_state.clear()
+    logout_url = f"https://us-east-1liycxnadt.auth.us-east-1.amazoncognito.com/logout?client_id={CLIENT_ID}&logout_uri=https://landtenmvpmainapp.streamlit.app/"
+    st.markdown(f'<meta http-equiv="refresh" content="0;URL=\'{logout_url}\'" />', unsafe_allow_html=True)
+
 if app_mode == "Home":
     st.title("Welcome to LandTen MVP Admin View.")
     st.write("Select an option from the sidebar to proceed.")
