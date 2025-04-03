@@ -12,6 +12,8 @@ COGNITO_DOMAIN = st.secrets.get("COGNITO_DOMAIN")
 REDIRECT_URI = st.secrets.get("REDIRECT_URI")
 TOKEN_URL = f"https://{COGNITO_DOMAIN}/oauth2/token"
 
+print(f" COGNITO_DOMAIN : {COGNITO_DOMAIN}")
+
 def run_login():
     query_params = {
         "response_type": "code",
