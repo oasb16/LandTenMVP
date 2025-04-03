@@ -3,3 +3,4 @@ pandas
 openai
 boto3
 pydantic
+python-dotenv
