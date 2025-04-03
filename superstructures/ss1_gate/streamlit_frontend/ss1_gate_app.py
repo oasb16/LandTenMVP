@@ -3,6 +3,7 @@ import streamlit as st
 import requests
 import base64
 import json
+import jwt
 from urllib.parse import urlencode
 from superstructures.ss1_gate.persona_extractor import extract_persona
 from superstructures.ss1_gate.shared.dynamodb import write_user_profile
@@ -13,22 +14,15 @@ REDIRECT_URI = "https://landtenmvpmainapp.streamlit.app/"
 TOKEN_ENDPOINT = f"{COGNITO_DOMAIN}/oauth2/token"
 COGNITO_CLIENT_SECRET = st.secrets.get("COGNITO_CLIENT_SECRET")
 
-import streamlit as st
-import requests
-import jwt
-import base64
-
 def run_login():
     query_params = st.query_params
+    token_url = "https://us-east-1liycxnadt.auth.us-east-1.amazoncognito.com/oauth2/token"
+    client_id = "ud60jun60me7po0pj0u8uvu2v"
+    client_secret = COGNITO_CLIENT_SECRET
+    redirect_uri = "https://landtenmvpmainapp.streamlit.app/"
 
     if "code" in query_params:
         code = query_params["code"]
-
-        token_url = "https://us-east-1liycxnadt.auth.us-east-1.amazoncognito.com/oauth2/token"
-        client_id = "ud60jun60me7po0pj0u8uvu2v"
-        client_secret = COGNITO_CLIENT_SECRET
-        redirect_uri = "https://landtenmvpmainapp.streamlit.app/"
-
         # Base64 encode client_id:client_secret
         basic_auth = base64.b64encode(f"{client_id}:{client_secret}".encode()).decode()
         headers = {
