@@ -1,1 +1,1 @@
-# SS2_Pulse module
+# SS2_Pulse initialization

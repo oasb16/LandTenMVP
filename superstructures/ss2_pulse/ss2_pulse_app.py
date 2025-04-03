@@ -1,4 +1,5 @@
 import streamlit as st
+from superstructures.ss2_pulse.router import route_user
 
 def run_router():
     if not st.session_state.get("logged_in"):
@@ -6,18 +7,4 @@ def run_router():
         return
 
     persona = st.session_state.get("persona")
-    
-    if persona == "tenant":
-        from superstructures.ss3_echo import run_echo
-        run_echo()
-    elif persona == "landlord":
-        from superstructures.ss5_view import run_view
-        run_view()
-    elif persona == "contractor":
-        from superstructures.ss7_bind import run_bind
-        run_bind()
-    elif persona == "admin":
-        from protocol_tracker.landten_protocol_tracker_app import render_tracker
-        render_tracker()
-    else:
-        st.error("Unknown persona. Cannot route.")
+    route_user(persona)
