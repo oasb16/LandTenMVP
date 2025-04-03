@@ -16,7 +16,7 @@ def run_login():
     if "logged_in" in st.session_state and st.session_state["logged_in"]:
         return
 
-    query_params = st.experimental_get_query_params()
+    query_params = st.query_params()
     if "code" in query_params:
         code = query_params["code"][0]
         data = {
