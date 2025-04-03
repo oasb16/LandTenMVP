@@ -1,13 +1,9 @@
-
 import boto3
-from boto3.dynamodb.conditions import Key
-import os
+from datetime import datetime
 
-dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
-table = dynamodb.Table('LandTena')
+dynamodb = boto3.resource("dynamodb", region_name="us-east-1")
+table = dynamodb.Table("landten_users")
 
-def write_user_profile(email, persona):
-    table.put_item(Item={
-        "email": email,
-        "persona": persona
-    })
+def write_user_profile(profile: dict):
+    profile["updated_at"] = datetime.utcnow().isoformat()
+    table.put_item(Item=profile)

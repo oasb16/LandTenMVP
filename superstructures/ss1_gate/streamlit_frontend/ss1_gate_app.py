@@ -14,6 +14,9 @@ REDIRECT_URI = "https://landtenmvpmainapp.streamlit.app/"
 TOKEN_ENDPOINT = f"{COGNITO_DOMAIN}/oauth2/token"
 
 def run_login():
+    if "persona" not in st.session_state:
+        st.session_state["persona"] = st.selectbox("Choose your role", ["tenant", "landlord", "contractor"])
+        
     query_params = st.query_params
     code = query_params.get("code", None)
     persona = query_params.get("persona", "tenant")  # default to tenant
@@ -71,4 +74,5 @@ def run_login():
             f"state=xyz&"
             f"persona={persona}"
         )
-        st.markdown(f"[Login with Google SSO]({login_url})")
+        st.markdown(f"[Login with Google SSO]({login_url}&persona={st.session_state['persona']})")
+
