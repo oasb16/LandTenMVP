@@ -64,7 +64,8 @@ if st.session_state.get("logged_in"):
     # ========================
     if app_mode == "Home":
         st.title("Welcome to LandTen MVP.")
-        st.write("Welcome, **{}**. You can now navigate the system.".format(st.session_state.get("persona", "User").capitalize()))
+        user_email = st.session_state.get("email", "tenant@example.com")
+        st.write(f"Welcome, **{user_email}**. You can now describe your issue.")
         st.write("Select an option from the sidebar to proceed.")
         st.write("Navigation Bar Persona separation coming soon.")
 
