@@ -5,11 +5,11 @@ import streamlit as st
 # 🧠 LandTen MVP — SS1_Gate Auth Layer Integration
 # ========================
 
-from superstructures.ss1_gate.ss1_gate_app import run_login
+# In streamlit_app.py
+from superstructures.ss1_gate.streamlit_frontend.ss1_gate_app import run_login
 
-if "logged_in" not in st.session_state:
+if "logged_in" not in st.session_state or not st.session_state["logged_in"]:
     run_login()
-    st.stop()
 
 from superstructures.ss2_pulse.ss2_pulse_app import run_router
 run_router()
