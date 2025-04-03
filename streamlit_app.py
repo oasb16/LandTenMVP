@@ -63,7 +63,7 @@ if st.session_state.get("logged_in"):
     # 🎯 Role-Based Views
     # ========================
     if app_mode == "Home":
-        st.title("Welcome to LandTen MVP Admin View.")
+        st.title("Welcome to LandTen MVP.")
         st.write("Welcome, **{}**. You can now navigate the system.".format(st.session_state.get("persona", "User").capitalize()))
         st.write("Select an option from the sidebar to proceed.")
         st.write("Navigation Bar Persona separation coming soon.")
