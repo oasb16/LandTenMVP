@@ -8,7 +8,7 @@ from urllib.parse import urlencode
 from superstructures.ss1_gate.persona_extractor import extract_persona
 from superstructures.ss1_gate.shared.dynamodb import write_user_profile
 
-CLIENT_ID = "ud60jun60me7po0pj0u8uvu2v"
+CLIENT_ID = st.secrets.get("COGNITO_CLIENT_ID")
 COGNITO_DOMAIN = "https://us-east-1liycxnadt.auth.us-east-1.amazoncognito.com"
 REDIRECT_URI = "https://landtenmvpmainapp.streamlit.app/"
 TOKEN_ENDPOINT = f"{COGNITO_DOMAIN}/oauth2/token"
@@ -17,7 +17,7 @@ COGNITO_CLIENT_SECRET = st.secrets.get("COGNITO_CLIENT_SECRET")
 def run_login():
     query_params = st.query_params
     token_url = "https://us-east-1liycxnadt.auth.us-east-1.amazoncognito.com/oauth2/token"
-    client_id = "ud60jun60me7po0pj0u8uvu2v"
+    client_id = CLIENT_ID
     client_secret = COGNITO_CLIENT_SECRET
     redirect_uri = "https://landtenmvpmainapp.streamlit.app/"
 
