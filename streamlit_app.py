@@ -5,16 +5,15 @@ import streamlit as st
 # 🧠 LandTen MVP — SS1_Gate Auth Layer Integration
 # ========================
 
-from superstructures.ss1_gate.streamlit_frontend.ss1_gate_app import run_login
+from superstructures.ss1_gate.ss1_gate_app import run_login
 
-# Trigger login if not already authenticated
-if "logged_in" not in st.session_state or not st.session_state["logged_in"]:
+if "logged_in" not in st.session_state:
     run_login()
     st.stop()
 
-# Post-login routing to persona-specific dashboard (SS2)
 from superstructures.ss2_pulse.ss2_pulse_app import run_router
 run_router()
+
 
 
 st.set_page_config(page_title="LandTen", layout="wide")

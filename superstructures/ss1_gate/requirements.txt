@@ -1,5 +1,0 @@
-flask
-authlib
-streamlit
-boto3
-python-dotenv
