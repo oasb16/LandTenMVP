@@ -14,8 +14,6 @@ if "logged_in" not in st.session_state or not st.session_state["logged_in"]:
 from superstructures.ss2_pulse.ss2_pulse_app import run_router
 run_router()
 
-
-
 st.set_page_config(page_title="LandTen", layout="wide")
 from superstructures.tracker import show_tracker
 
