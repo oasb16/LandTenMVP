@@ -5,6 +5,11 @@ from .utils import enforce_word_limit
 import uuid
 from datetime import datetime
 
+def run_tenant_view():
+    st.title("Tenant View")
+    st.write("Welcome, tenant. You can now describe your issue.")
+
+
 def run_echo():
     st.title("Tenant Dashboard")
 
