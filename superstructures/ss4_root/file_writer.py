@@ -9,4 +9,4 @@ def write_status_and_log(incident, base_path):
         sf.write('{"status": "ticket_created"}')
     
     with open(log_file, "a") as lf:
-        lf.write(f"[{datetime.utcnow()}] Ingested from ss3_echo\n")
+        lf.write(f"[{datetime.utcnow().isoformat()}] Ingested from ss3_echo\n")
