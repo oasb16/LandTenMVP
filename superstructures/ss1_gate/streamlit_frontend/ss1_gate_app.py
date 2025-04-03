@@ -11,6 +11,7 @@ CLIENT_ID = "ud60jun60me7po0pj0u8uvu2v"
 COGNITO_DOMAIN = "https://us-east-1liycxnadt.auth.us-east-1.amazoncognito.com"
 REDIRECT_URI = "https://landtenmvpmainapp.streamlit.app/"
 TOKEN_ENDPOINT = f"{COGNITO_DOMAIN}/oauth2/token"
+CLIENT_SECRET
 
 import streamlit as st
 import requests
@@ -18,7 +19,6 @@ import jwt
 import base64
 
 def run_login():
-    st.set_page_config(page_title="Login", layout="wide")
     query_params = st.query_params
 
     if "code" in query_params:
