@@ -11,7 +11,7 @@ CLIENT_ID = "ud60jun60me7po0pj0u8uvu2v"
 COGNITO_DOMAIN = "https://us-east-1liycxnadt.auth.us-east-1.amazoncognito.com"
 REDIRECT_URI = "https://landtenmvpmainapp.streamlit.app/"
 TOKEN_ENDPOINT = f"{COGNITO_DOMAIN}/oauth2/token"
-CLIENT_SECRET
+COGNITO_CLIENT_SECRET = st.secrets.get("COGNITO_CLIENT_SECRET")
 
 import streamlit as st
 import requests
@@ -26,7 +26,7 @@ def run_login():
 
         token_url = "https://us-east-1liycxnadt.auth.us-east-1.amazoncognito.com/oauth2/token"
         client_id = "ud60jun60me7po0pj0u8uvu2v"
-        client_secret = "YOUR_CLIENT_SECRET"
+        client_secret = COGNITO_CLIENT_SECRET
         redirect_uri = "https://landtenmvpmainapp.streamlit.app/"
 
         # Base64 encode client_id:client_secret
