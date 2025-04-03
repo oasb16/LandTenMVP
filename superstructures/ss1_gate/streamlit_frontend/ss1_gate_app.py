@@ -47,7 +47,7 @@ def run_login():
             st.session_state["email"] = user_info.get("email", "")
             st.session_state["persona"] = st.query_params.get("persona", "tenant")
 
-            st.experimental_set_query_params()
+            st.query_params()
             st.rerun()
         else:
             st.error(f"Login failed: {res.text}")
